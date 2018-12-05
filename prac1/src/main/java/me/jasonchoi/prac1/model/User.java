@@ -1,6 +1,6 @@
 package me.jasonchoi.prac1.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -20,7 +20,7 @@ public class User extends AbstractPersistable<Long> {
     private String password;
 
     @OneToMany(targetEntity = Address.class, mappedBy = "user", fetch=FetchType.LAZY, cascade =  CascadeType.ALL)
-    @JsonManagedReference
+    @JsonBackReference
     private Set<Address> addresses;
 
     //@JsonManagedReference
