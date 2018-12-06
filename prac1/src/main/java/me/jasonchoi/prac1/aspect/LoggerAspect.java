@@ -1,16 +1,17 @@
 package me.jasonchoi.prac1.aspect;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class LoggerAspect {
-    private static Logger logger = LoggerFactory.getLogger(LoggerAspect.class);
+    private static final Logger logger = LogManager.getLogger(LoggerAspect.class);
 
     @Pointcut("execution(* me.jasonchoi.prac1.*.*.*(..))")
     private void generalPointCut() {
