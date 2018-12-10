@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 
@@ -18,6 +15,9 @@ public class User extends AbstractPersistable<Long> {
     private String userId;
     private String userName;
     private String password;
+    @ManyToOne
+    @JoinColumn(name="role_id")
+    private Role role;
 
     @OneToMany(targetEntity = Address.class, mappedBy = "user", fetch=FetchType.LAZY, cascade =  CascadeType.ALL)
     @JsonBackReference
@@ -27,5 +27,8 @@ public class User extends AbstractPersistable<Long> {
     //To prevent infinite recursion
     //http://binarycube.tistory.com/1
     //https://dalgoo.tistory.com/37
+
+
+
 
 }
