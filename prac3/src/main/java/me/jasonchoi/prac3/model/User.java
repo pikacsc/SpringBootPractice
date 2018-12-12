@@ -21,7 +21,7 @@ public class User {
     @NotEmpty
     private String name;
 
-    @Size(min=4, max=25) //To set minimum size of password
+    @Size(min=4) //To set minimum size of password
     private String password;
 
     //user : tasks == 1:N relationship
