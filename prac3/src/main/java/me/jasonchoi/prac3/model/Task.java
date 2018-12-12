@@ -24,11 +24,15 @@ public class Task {
     private String stopTime;
 
     @NotEmpty
+    @Column(length=1000)
     private String description;
 
     @ManyToOne
     @JoinColumn(name ="USER_EMAIL")
     private User user;
+
+    public Task() {};
+
 
     public Task(String date, String startTime, String stopTime, String description, User user) {
         this.date = date;
