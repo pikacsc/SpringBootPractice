@@ -20,6 +20,7 @@ public class IndexController {
 
     @GetMapping("/login")
     public String showLoginForm() {
+
         return "views/loginForm";
     }
 

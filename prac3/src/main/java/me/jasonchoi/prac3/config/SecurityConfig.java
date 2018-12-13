@@ -42,8 +42,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/register","/","/about","login","/css/**","/webjars/**").permitAll()
-                .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
+        http.authorizeRequests()
+                //.antMatchers("/URL").permitAll() //access permit to all, Everyone can access that /URL
+                .antMatchers("/register","/","/about","login","/css/**","/webjars/**").permitAll()
+
+                //.antMatchers("/URL").hasAnyRole("A,B") //access permit to ROLE named A or B
+                .antMatchers("/profile").hasAnyRole("USER, ADMIN")
+
+                //.antMatchers("/URL").hasRole("A") //access permit to ROLE named A only
+                .antMatchers("/users","/addTask").hasRole("ADMIN")
+
+                .and().formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/profile").and().logout().logoutSuccessUrl("/login");
     }
 }

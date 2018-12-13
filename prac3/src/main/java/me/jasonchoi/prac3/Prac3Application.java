@@ -1,12 +1,27 @@
 package me.jasonchoi.prac3;
 
+import me.jasonchoi.prac3.model.User;
+import me.jasonchoi.prac3.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Prac3Application {
+public class Prac3Application implements CommandLineRunner {
+
+    @Autowired
+    private UserService userService;
 
     public static void main(String[] args) {
         SpringApplication.run(Prac3Application.class, args);
+    }
+
+    @Override
+    public void run(String... strings) throws Exception {
+        {
+            User newAdmin = new User("admin@gmail.com", "Admin", "123456");
+            userService.createAdmin(newAdmin);
+        }
     }
 }
